@@ -170,42 +170,61 @@ Lexorma provides a unified environment for managing database structures, data st
 
 Rather than depending on a specific programming language or application framework, Lexorma focuses on the database structures and definitions that applications share.
 
+
 ### Database-Centric Approach
 
-<div align="center">
+Lexorma manages data standards and metadata independently of application development technologies.
 
-<table>
-<tr><th align="center">Application Development</th></tr>
-<tr><td align="center">JPA / Hibernate · MyBatis / SQL · AI-Assisted Coding</td></tr>
-</table>
+```mermaid
+flowchart TB
+    subgraph APP["Application Development"]
+        direction LR
+        A["JPA / Hibernate"]
+        B["MyBatis / SQL"]
+        C["AI-Assisted Coding"]
+    end
 
-<p>↓</p>
+    DB["Database Systems<br/>Schemas · Tables · Columns · Relationships"]
 
-<table>
-<tr><th align="center">Database Systems</th></tr>
-<tr><td align="center">Schemas · Tables · Columns · Keys · Constraints · Relationships</td></tr>
-</table>
+    subgraph LX["LEXORMA"]
+        direction TB
+        STD["Data Standardization"]
+        META["Metadata Management"]
+        MODEL["Logical & Physical Modeling"]
+        DICT["Data Dictionary"]
+        QUALITY["Quality Assessment & Model Comparison"]
+    end
 
-<p>↓ Metadata Collection &amp; Analysis</p>
+    RESULT["Consistent · Traceable · Maintainable Data"]
 
-<table>
-<tr><th align="center">LEXORMA</th></tr>
-<tr><td align="center">Data Standardization</td></tr>
-<tr><td align="center">Metadata Management</td></tr>
-<tr><td align="center">Logical &amp; Physical Data Modeling</td></tr>
-<tr><td align="center">Data Dictionary</td></tr>
-<tr><td align="center">Quality Assessment &amp; Model Comparison</td></tr>
-</table>
+    A --> DB
+    B --> DB
+    C --> DB
 
-<p>↓</p>
+    DB -->|"Metadata Collection & Analysis"| META
 
-<strong>Consistency · Traceability · Maintainability</strong>
+    META --- STD
+    META --- MODEL
+    META --- DICT
+    META --- QUALITY
 
-</div>
+    STD --> RESULT
+    MODEL --> RESULT
+    DICT --> RESULT
+    QUALITY --> RESULT
+
+    classDef default fill:#f8fafc,stroke:#94a3b8,color:#1e293b
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af,stroke-width:2px
+    classDef outcome fill:#dcfce7,stroke:#16a34a,color:#166534,stroke-width:2px
+
+    class DB,META primary
+    class RESULT outcome
+```
 
 Lexorma does not require direct integration with ORM frameworks or application source code.
 
-It focuses on managing and evaluating database metadata independently of application implementation technologies.
+Instead, it collects and manages database metadata independently of application implementation technologies.
+
 
 ### Our Approach
 
